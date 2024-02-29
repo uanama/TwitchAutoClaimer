@@ -5,15 +5,14 @@ let buttonIsOn = false;
 function controllaElemento() {
 	console.clear();
 	const elemento = document.querySelector('.ScCoreButton-sc-ocjdkq-0.ScCoreButtonSuccess-sc-ocjdkq-5.bTXTVH.fEpwrH');
-  // ?referrer=raid
   const currentUrl = window.location.href;
   const urlParts = currentUrl.split('/');
-  const name = urlParts[urlParts.length - 1];
-  let src;
+  let name = urlParts[urlParts.length - 1];
+  name = name.replace(/\?referrer=raid/g, '');
 
-  console.log(name.includes('?referrer=raid'))
+  let src;
 	
-  if (name != "" && !name.includes('?referrer=raid')) {
+  if (name != "") {
     chrome.storage.local.get('twitchAutoClaimerObject', function(result) {
       const twitchAutoClaimerObject = result?.twitchAutoClaimerObject ?? { users: [] };
       const originalName = document.querySelector('h1.CoreText-sc-1txzju1-0.ScTitleText-sc-d9mj2s-0.AAWwv.ezNtJL.InjectLayout-sc-1i43xsx-0.dhkijX.tw-title');
@@ -54,7 +53,6 @@ function controllaElemento() {
 
       if (elemento) {
         elemento.click();
-
         // Incrementa il conteggio di clic per l'utente corrente
         if (userIndex !== -1) {
           twitchAutoClaimerObject.users[userIndex].conteggioClick++;
@@ -79,13 +77,6 @@ function setOnOffValue() {
   });
 }
 
-function onOffController() {
-  // Toggla lo stato di accensione/spegnimento
-  chrome.storage.local.get('twitchAutoClaimerOnOffState', function(result) {
-    const onOffState = result.twitchAutoClaimerOnOffState;
-  });
-}
-
 // Esegui la funzione ogni 5 secondi
 setOnOffValue();
 if (buttonIsOn) {
@@ -95,10 +86,8 @@ if (buttonIsOn) {
 setInterval(function() {
   setOnOffValue();
   if (buttonIsOn) {
-    onOffController();
     controllaElemento();
   } 
-  
 }, 5000);
  
 // | | | |  / _ \  |  \  | |  / _ \  | \  / |  / _ \
