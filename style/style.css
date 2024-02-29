@@ -1,0 +1,64 @@
+body {
+  background: linear-gradient(45deg, #0c1a0c, #231F20, #0c1a0c);
+  background-size: 600% 600%;
+  animation: gradientAnimation 10s ease infinite;
+  width: 450px;
+  padding: 10px;
+}
+
+@keyframes gradientAnimation {
+  0% {
+    background-position: 0% 0%;
+  }
+  50% {
+    background-position: 100% 100%;
+  }
+  100% {
+    background-position: 0% 0%;
+  }
+}
+
+
+.text {
+  color: white;
+}
+
+.containerTwitchAutoClicker {
+  background-color: transparent;
+  max-height: 200px;
+  overflow: auto;
+}
+
+.containerTwitchAutoClicker::-webkit-scrollbar {
+  width: 6px; /* Larghezza della scrollbar */
+  border-radius: 8px; /* Border-radius della scrollbar */
+}
+
+.containerTwitchAutoClicker::-webkit-scrollbar-thumb {
+  background-color: #4CAF50CC; /* Colore della thumb */
+  border-radius: 8px; /* Border-radius della thumb */
+}
+
+.containerTwitchAutoClicker::-webkit-scrollbar-track {
+  background-color: #00000065; /* Colore del track */
+  border-radius: 8px; /* Border-radius del track */
+}
+
+.toggleOnOffContainer {
+  
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-bottom: 20px;
+}
+
+.toggleOnOff {
+  width: 80px;
+  height: 80px;
+  /* border: 0px; */
+  background-color: #6441a5;
+  text-align: center;
+  cursor: pointer;
+  border-radius: 50%;
+  
+}

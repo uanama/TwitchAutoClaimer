@@ -1,0 +1,20 @@
+{
+	"name": "Twitch Auto Claimer",
+	"version": "1.0.0",
+	"description": "Twitch Auto Claimer",
+	"manifest_version": 3,
+	"author": "uanama",
+	"permissions": ["activeTab", "storage"],
+	"action": {
+		"default_icon": "assets/icons/icon.png",
+		"default_popup": "index.html",
+		"default_title": "Twitch Auto Claimer"
+	},
+	"content_scripts": [
+		{
+			"js": ["js/content_script.js"],
+			"css": ["style/style.css"],
+			"matches": ["https://www.twitch.tv/*"]
+		}
+	]
+}
