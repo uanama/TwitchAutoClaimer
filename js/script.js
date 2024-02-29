@@ -1,111 +1,73 @@
-// Recupera il bottone di accensione/spegnimento
+// Utilizza il tipo di const/let per dichiarare le variabili
 const toggleButton = document.getElementById('toggleOnOff');
+
+// Utilizza funzioni arrow per una sintassi più concisa
 toggleButton.addEventListener('click', toggleButtonClick);
 
-// Funzione per controllare e aggiornare currentUrl ogni 5 secondi
-function checkAndUpdateCurrentUrl() {
-  chrome.storage.local.get('twitchAutoClaimerObject', function(result) {
-    const twitchAutoClaimerObject = result.twitchAutoClaimerObject;
+// Utilizza async/await per operazioni asincrone
+async function checkAndUpdateCurrentUrl() {
+  try {
+    const { twitchAutoClaimerObject } = await chrome.storage.local.get('twitchAutoClaimerObject');
 
     if (twitchAutoClaimerObject && twitchAutoClaimerObject.users.length > 0) {
       const containerElement = document.getElementById('containerTwitchAutoClicker');
       containerElement.innerHTML = ''; // Pulisce il contenuto del container
 
-      // Crea una tabella
       const tableElement = document.createElement('table');
-      tableElement.classList.add('user-table'); // Aggiungi classe CSS per la tabella
+      tableElement.classList.add('user-table');
 
-      // Intestazione della tabella
       const headerRow = tableElement.createTHead().insertRow(0);
 
-      // Header per "Immagine"
-      const imageHeader = document.createElement('th');
-      imageHeader.textContent = '';
-      headerRow.appendChild(imageHeader);
+      // Utilizza una funzione per creare le celle dell'intestazione
+      headerRow.appendChild(createTableHeaderCell('', 'center', '#f2f2f2'));
+      headerRow.appendChild(createTableHeaderCell('', 'left', '#f2f2f2'));
+      headerRow.appendChild(createTableHeaderCell('', 'center', '#f2f2f2'));
+      headerRow.appendChild(createTableHeaderCell('', 'center', '#f2f2f2'));
+      headerRow.appendChild(createTableHeaderCell('', 'center', '#f2f2f2'));
 
-      // Header per "Nome"
-      const nameHeader = document.createElement('th');
-      nameHeader.textContent = '';
-      nameHeader.style.textAlign = 'left';
-      nameHeader.style.color = 'white';
-      headerRow.appendChild(nameHeader);
-
-      // Header per "Click"
-      const cliccatiHeader = document.createElement('th');
-      cliccatiHeader.textContent = '';
-      cliccatiHeader.style.textAlign = 'center';
-      cliccatiHeader.style.color = 'white';
-      headerRow.appendChild(cliccatiHeader);
-
-      // Header per "Rimuovi"
-      const removeHeader = document.createElement('th');
-      removeHeader.textContent = '';
-      headerRow.appendChild(removeHeader);
-
-      // Itera su ogni utente nell'array
       twitchAutoClaimerObject.users.forEach((user, index) => {
+        const row = tableElement.insertRow();
 
-        // Aggiungi una riga per ogni utente
-        const row = tableElement.insertRow(index + 1);
+        const imageCell = row.insertCell();
+        imageCell.appendChild(createImageElement(user.imageSrc));
 
-        // Aggiungi l'immagine nella colonna "Immagine"
-        const imageCell = row.insertCell(0);
-        const imageElement = document.createElement('img');
-        imageElement.src = user.imageSrc;
-        imageElement.style.width = '30px';
-        imageElement.style.height = '30px';
-        imageElement.style.marginRight = '10px';
-        
-        imageElement.style.borderRadius = '50%';
-        imageCell.appendChild(imageElement);
+        const nameCell = row.insertCell();
+        nameCell.appendChild(createNameLink(user.name));
 
-        // Aggiungi il nome nella colonna "Nome"
-        const nameCell = row.insertCell(1);
-        const nameLink = document.createElement('a');
-        nameLink.addEventListener('click', function () {
-          chrome.tabs.create({ url: 'https://www.twitch.tv/' + user.name });
-        });
-        nameLink.textContent = user.name;
-        nameLink.style.color = '#6441a5';
-        nameLink.style.textDecoration = 'none';
-        nameLink.style.cursor = 'pointer';
-        nameLink.style.textAlign = 'left';
-        nameCell.appendChild(nameLink);
-
-        // Aggiungi il conteggio dei clic nella colonna Click
-        const cliccatiCell = row.insertCell(2);
+        const cliccatiCell = row.insertCell();
         cliccatiCell.textContent = user.conteggioClick;
-        cliccatiCell.style.color = '#ffffff';
-        cliccatiCell.style.textAlign = 'center';
-        cliccatiCell.style.width = '100%';
+        cliccatiCell.classList.add('click-count');
 
-        // Aggiungi la colonna "Rimuovi" con una "X" e aggiungi l'evento di rimozione
-        const removeCell = row.insertCell(3);
-        const removeButton = document.createElement('button');
-        removeButton.textContent = 'X';
-        removeButton.style.backgroundColor = 'red';
-        removeButton.style.borderRadius = '15px';
-        removeButton.style.borderWidth = '0px';
-        removeButton.style.width = '20px';
-        removeButton.style.height = '20px';
-        removeButton.style.color = 'white';
-        removeButton.style.textAlign = 'center';
-        removeButton.style.fontSize = '10px';
-        removeButton.style.cursor = 'pointer';
-        removeButton.style.marginRight = '10px';
-        removeButton.addEventListener('click', function () {
-          removeUserAtIndex(index);
-        });
-        removeCell.appendChild(removeButton);
-        removeCell.style.width = '100%';
-        removeCell.style.justifyContent = 'center';
-        removeCell.style.textAlign = 'right';
+        const reorderCell = row.insertCell();
+        reorderCell.appendChild(createButton('↑', 'reorder-button', () => moveUser(index, 'up')));
+        reorderCell.appendChild(createButton('↓', 'reorder-button', () => moveUser(index, 'down')));
+
+        const removeCell = row.insertCell();
+        removeCell.appendChild(createButton('X', 'remove-button', () => removeUserAtIndex(index)));
       });
+
       containerElement.appendChild(tableElement);
     } else {
       console.log('Nessun oggetto trovato nella cache per la chiave "twitchAutoClaimerObject"');
     }
-  });
+  } catch (error) {
+    console.error('Errore durante il recupero dei dati:', error);
+  }
+}
+
+function createImageElement(src) {
+  const imageElement = document.createElement('img');
+  imageElement.src = src;
+  imageElement.classList.add('user-image');
+  return imageElement;
+}
+
+function createNameLink(name) {
+  const nameLink = document.createElement('a');
+  nameLink.addEventListener('click', () => chrome.tabs.create({ url: `https://www.twitch.tv/${name}` }));
+  nameLink.textContent = name;
+  nameLink.classList.add('user-name');
+  return nameLink;
 }
 
 // Funzione per rimuovere l'utente all'indice specificato
@@ -124,21 +86,48 @@ function removeUserAtIndex(index) {
   });
 }
 
+// Funzione generica per spostare l'utente
+function moveUser(index, direction) {
+  chrome.storage.local.get('twitchAutoClaimerObject', function(result) {
+    const twitchAutoClaimerObject = result.twitchAutoClaimerObject;
+
+    if (twitchAutoClaimerObject && twitchAutoClaimerObject.users.length > 1) {
+      let targetIndex;
+
+      // Calcola il nuovo indice in base alla direzione
+      if (direction === 'up' && index > 0) {
+        targetIndex = index - 1;
+      } else if (direction === 'down' && index < twitchAutoClaimerObject.users.length - 1) {
+        targetIndex = index + 1;
+      } else {
+        console.log(`Impossibile spostare l'utente ${direction}.`);
+        return;
+      }
+
+      // Scambia posizioni
+      [twitchAutoClaimerObject.users[index], twitchAutoClaimerObject.users[targetIndex]] =
+      [twitchAutoClaimerObject.users[targetIndex], twitchAutoClaimerObject.users[index]];
+
+      chrome.storage.local.set({ 'twitchAutoClaimerObject': twitchAutoClaimerObject }, function() {
+        console.log(`Utente spostato verso ${direction}:`, index);
+        checkAndUpdateCurrentUrl();
+      });
+    } else {
+      console.log(`Impossibile spostare l'utente verso ${direction}.`);
+    }
+  });
+}
+
 // Funzione per gestire il click sul bottone di accensione/spegnimento
 function toggleButtonClick() {
   chrome.storage.local.get('twitchAutoClaimerOnOffState', function(result) {
     const onOffState = result.twitchAutoClaimerOnOffState;
-    if (onOffState != undefined) {
-      chrome.storage.local.set({ 'twitchAutoClaimerOnOffState': !onOffState }, function() {
-        console.log('Stato aggiornato:', !onOffState);
-        toggleButton.textContent = !onOffState ? 'SPEGNI' : 'ACCENDI';
-      });
-    } else {
-      chrome.storage.local.set({ 'twitchAutoClaimerOnOffState': true}, function() {
-        console.log('Stato aggiornato:', true);
-        toggleButton.textContent = 'SPEGNI';
-      });
-    }
+    const newOnOffState = onOffState !== undefined ? !onOffState : true;
+
+    chrome.storage.local.set({ 'twitchAutoClaimerOnOffState': newOnOffState }, function() {
+      console.log('Stato aggiornato:', newOnOffState);
+      toggleButton.textContent = newOnOffState ? 'TURN OFF' : 'TURN ON';
+    });
   });
 }
 
@@ -146,22 +135,29 @@ function toggleButtonClick() {
 function getOnOffValue() {
   chrome.storage.local.get('twitchAutoClaimerOnOffState', function(result) {
     const onOffState = result.twitchAutoClaimerOnOffState;
-    if (onOffState != undefined) {
-      toggleButton.textContent = onOffState ? 'SPEGNI' : 'ACCENDI';
-    } else {
-      toggleButton.textContent = 'SPEGNI';
-    }
+    toggleButton.textContent = onOffState ? 'TURN OFF' : 'TURN ON';
   });
+}
+
+// Funzione per creare un elemento th con le impostazioni comuni
+function createTableHeaderCell(text, textAlign = 'center', color = '#f2f2f2') {
+  const headerCell = document.createElement('th');
+  headerCell.textContent = text;
+  headerCell.style.textAlign = textAlign;
+  headerCell.style.color = color;
+  return headerCell;
+}
+
+// Funzione per creare un pulsante con le impostazioni comuni
+function createButton(text, className, clickHandler) {
+  const button = document.createElement('button');
+  button.textContent = text;
+  button.classList.add(className);
+  button.addEventListener('click', clickHandler);
+  return button;
 }
 
 // Esegui la funzione ogni 5 secondi
 checkAndUpdateCurrentUrl();
 getOnOffValue();
-setInterval(function() {
-	checkAndUpdateCurrentUrl();
-}, 5000);
-
-// | | | |  / _ \  |  \  | |  / _ \  | \  / |  / _ \
-// | | | | | |_| | |   \ | | | |_| | |  \/  | | |_| |
-// | |_| | |  _  | | |\ \| | |  _  | | |\/| | |  _  |
-//  \___/  |_| |_| |_| \___| |_| |_| |_|  |_| |_| |_|
+setInterval(checkAndUpdateCurrentUrl, 5000);

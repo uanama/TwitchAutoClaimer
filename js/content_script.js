@@ -2,21 +2,26 @@
 const toggleButton = document.getElementById('toggleOnOff');
 let buttonIsOn = false;
 
+// Definisci le costanti per i query selector
+const claimButtonSelector = '.ScCoreButton-sc-ocjdkq-0.ScCoreButtonSuccess-sc-ocjdkq-5.bTXTVH.fEpwrH';
+const originalNameSelector1 = 'h1.CoreText-sc-1txzju1-0.ScTitleText-sc-d9mj2s-0.AAWwv.ezNtJL.InjectLayout-sc-1i43xsx-0.dhkijX.tw-title';
+const originalNameSelector2 = 'p.CoreText-sc-1txzju1-0.ScTitleText-sc-d9mj2s-0.sghpq.caLSIS.tw-title';
+
 function controllaElemento() {
-	console.clear();
-	const elemento = document.querySelector('.ScCoreButton-sc-ocjdkq-0.ScCoreButtonSuccess-sc-ocjdkq-5.bTXTVH.fEpwrH');
+  console.clear();
+  const elemento = document.querySelector(claimButtonSelector);
   const currentUrl = window.location.href;
   const urlParts = currentUrl.split('/');
   let name = urlParts[urlParts.length - 1];
   name = name.replace(/\?referrer=raid/g, '');
 
   let src;
-	
-  if (name != "") {
+
+  if (name !== "") {
     chrome.storage.local.get('twitchAutoClaimerObject', function(result) {
       const twitchAutoClaimerObject = result?.twitchAutoClaimerObject ?? { users: [] };
-      const originalName = document.querySelector('h1.CoreText-sc-1txzju1-0.ScTitleText-sc-d9mj2s-0.AAWwv.ezNtJL.InjectLayout-sc-1i43xsx-0.dhkijX.tw-title');
-      const originalName2 = document.querySelector('p.CoreText-sc-1txzju1-0.ScTitleText-sc-d9mj2s-0.sghpq.caLSIS.tw-title');
+      const originalName = document.querySelector(originalNameSelector1);
+      const originalName2 = document.querySelector(originalNameSelector2);
 
       // Verifica se l'utente è già presente nella lista
       const userIndex = twitchAutoClaimerObject.users.findIndex(user => user.name === name);
@@ -33,9 +38,9 @@ function controllaElemento() {
           console.log("Nome originale non trovato, impossibile caricare l'immagine.");
         }
         const imageElement = document.querySelector(`img[alt="${finalOriginalName}"]`);
-        
-        const currentSrc = imageElement.getAttribute('src');
-        if (currentSrc !== undefined && currentSrc !== null) {
+
+        const currentSrc = imageElement?.getAttribute('src');
+        if (currentSrc) {
           src = currentSrc;
         }
 
@@ -47,8 +52,8 @@ function controllaElemento() {
           console.log('Utente aggiunto nella lista:', name);
         });
       } else {
-        console.log("nome twitch:", user.name);
-        console.log("conteggio click:", user.conteggioClick)
+        console.log("Nome twitch:", user.name);
+        console.log("Conteggio click:", user.conteggioClick);
       }
 
       if (elemento) {
@@ -69,11 +74,7 @@ function controllaElemento() {
 function setOnOffValue() {
   chrome.storage.local.get('twitchAutoClaimerOnOffState', function(result) {
     const onOffState = result.twitchAutoClaimerOnOffState;
-    if (onOffState != undefined) {
-      buttonIsOn = onOffState;
-    } else {
-      buttonIsOn = true;
-    }
+    buttonIsOn = onOffState !== undefined ? onOffState : true;
   });
 }
 
@@ -87,10 +88,5 @@ setInterval(function() {
   setOnOffValue();
   if (buttonIsOn) {
     controllaElemento();
-  } 
+  }
 }, 5000);
- 
-// | | | |  / _ \  |  \  | |  / _ \  | \  / |  / _ \
-// | | | | | |_| | |   \ | | | |_| | |  \/  | | |_| |
-// | |_| | |  _  | | |\ \| | |  _  | | |\/| | |  _  |
-//  \___/  |_| |_| |_| \___| |_| |_| |_|  |_| |_| |_|

@@ -1,9 +1,17 @@
 body {
-  background: linear-gradient(45deg, #0c1a0c, #231F20, #0c1a0c);
+  background: linear-gradient(45deg, #112511, #170f25, #112511);
   background-size: 600% 600%;
   animation: gradientAnimation 10s ease infinite;
   width: 450px;
   padding: 10px;
+  padding-bottom: 0px;
+}
+
+.toggleOnOffContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-bottom: 10px;
 }
 
 @keyframes gradientAnimation {
@@ -17,7 +25,6 @@ body {
     background-position: 0% 0%;
   }
 }
-
 
 .text {
   color: white;
@@ -35,7 +42,7 @@ body {
 }
 
 .containerTwitchAutoClicker::-webkit-scrollbar-thumb {
-  background-color: #4CAF50CC; /* Colore della thumb */
+  background-color: #6441a5; /* Colore della thumb */
   border-radius: 8px; /* Border-radius della thumb */
 }
 
@@ -44,21 +51,88 @@ body {
   border-radius: 8px; /* Border-radius del track */
 }
 
-.toggleOnOffContainer {
-  
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding-bottom: 20px;
-}
-
 .toggleOnOff {
   width: 80px;
   height: 80px;
-  /* border: 0px; */
-  background-color: #6441a5;
+  background: linear-gradient(45deg, #000000, #3b2761, #000000);
+  color: #6441a5;
   text-align: center;
   cursor: pointer;
   border-radius: 50%;
-  
+  animation: gradientAnimation 10s ease infinite;
 }
+
+.user-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.user-table th {
+  /* padding: 8px; */
+  white-space: nowrap; /* Evita il riavvolgimento del testo */
+}
+
+.user-table td {
+  padding: 4px;
+  padding-left: 15px;
+  padding-right: 15px;
+  white-space: nowrap; /* Evita il riavvolgimento del testo */
+}
+
+.reorder-button, .remove-button {
+  display: inline-block;
+  vertical-align: middle;
+  margin-left: 5px;
+  border: none;
+  border-radius: 15px;
+  width: 20px;
+  height: 20px;
+  text-align: center;
+  font-size: 10px;
+  cursor: pointer;
+}
+
+.reorder-button {
+  background-color: #6441a5;
+  color: white;
+}
+
+.remove-button {
+  background-color: rgb(165, 0, 0);
+  color: white;
+}
+
+.user-image {
+  width: 30px;
+  height: 30px;
+  margin-right: 10px;
+  border-radius: 50%;
+  opacity: 0.98;
+}
+
+.user-name {
+  color: #6441a5;
+  text-decoration: none;
+  cursor: pointer;
+  text-align: left;
+  font-size: 14px;
+}
+
+.click-count {
+  color: #6441a5;
+  text-align: center;
+  width: 100%;
+  font-size: 14px;
+}
+
+#byUanama {
+  width: 100%;
+  text-align: center;
+  margin-top: 20px;
+  font-size: 14px;
+  background: linear-gradient(45deg, #6441a5CC, #6441a5);
+  -webkit-background-clip: text;
+  color: transparent;
+  display: inline-block;
+}
+
