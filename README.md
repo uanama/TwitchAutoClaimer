@@ -9,4 +9,4 @@ Google extension that automatically clicks the button to redeem channel points o
 4. At the top left click on "Load unpackaged extension" and select the extension folder;
 5. Now you can enjoy seeing how it automatically redeems channel points.
 
-By accessing the page of any streamer this will be added to the list of extensions automatically, for each streamer the number of automatic redemptions made will also be saved.
+By accessing the page of any streamer this will be added to the extension's list automatically, for each streamer the number of automatic redemptions made will also be saved.
