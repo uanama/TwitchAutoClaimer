@@ -16,6 +16,4 @@
   <li>Now you can enjoy seeing how it automatically redeems channel points.</li>
 </ol>
 
-
-
 By accessing the page of any streamer this will be added to the extension's list automatically, for each streamer the number of automatic redemptions made will also be saved.
