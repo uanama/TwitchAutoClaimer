@@ -4,9 +4,7 @@
   <img alt="screenshot.png" width="500" src="https://github.com/LorenzoA98/TwitchAutoCLaimer/blob/main/screenshot.png">
 </div>
 
-
-
-<ol id="instructionsList" style="font-family: Arial, sans-serif; font-size: 16px; line-height: 1.5; color: #333; display: none;">
+<ol style="list-style: none; padding: 0; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; font-size: 18px; line-height: 1.6; color: #333; background-color: #f5f5f5; border: 2px solid #3498db; border-radius: 8px; padding: 20px; margin: 20px;">
   <li>Open Chrome;</li>
   <li>At the top right, select More (three dots) -&gt; Extension -&gt; Manage extensions;</li>
   <li>At the top right activate developer mode;</li>
