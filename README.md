@@ -5,10 +5,13 @@
 </div>
 
 
-1. Open Chrome;
-2. At the top right, select More (three dots) -> Extension -> Manage extensions;
-3. At the top right activate developer mode;
-4. At the top left click on "Load unpackaged extension" and select the extension folder;
-5. Now you can enjoy seeing how it automatically redeems channel points.
+<ol style="font-family: Arial, sans-serif; font-size: 16px; line-height: 1.5; color: #333;">
+  <li>Open Chrome;</li>
+  <li>At the top right, select More (three dots) -&gt; Extension -&gt; Manage extensions;</li>
+  <li>At the top right activate developer mode;</li>
+  <li>At the top left click on "Load unpackaged extension" and select the extension folder;</li>
+  <li>Now you can enjoy seeing how it automatically redeems channel points.</li>
+</ol>
+
 
 By accessing the page of any streamer this will be added to the extension's list automatically, for each streamer the number of automatic redemptions made will also be saved.
