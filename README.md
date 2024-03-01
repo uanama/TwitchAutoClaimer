@@ -1,6 +1,6 @@
 <h1 align="center">TwitchAutoClaimer</h1>
-# TwitchAutoClaimer
-Google extension that automatically clicks the button to redeem channel points on every page opened. The extension also saves the number of clicks made on each channel.
+<h3 align="center">Google extension that automatically clicks the button to redeem channel points on every page opened. The extension also saves the number of clicks made on each channel.</h3>
+
 
 ![Cattura (1)](https://github.com/LorenzoA98/TwitchAutoClaimer/assets/56697382/a5937509-4aca-4ebb-a2ae-b2a3346bd8d9)
 
