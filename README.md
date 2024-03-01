@@ -5,7 +5,6 @@
 </div>
 
 
-<button onclick="toggleInstructions()" style="font-family: Arial, sans-serif; font-size: 16px; background-color: #4CAF50; color: white; padding: 10px; margin-bottom: 10px; cursor: pointer;">Toggle Instructions</button>
 
 <ol id="instructionsList" style="font-family: Arial, sans-serif; font-size: 16px; line-height: 1.5; color: #333; display: none;">
   <li>Open Chrome;</li>
@@ -14,13 +13,6 @@
   <li>At the top left click on "Load unpackaged extension" and select the extension folder;</li>
   <li>Now you can enjoy seeing how it automatically redeems channel points.</li>
 </ol>
-
-<script>
-  function toggleInstructions() {
-    var instructionsList = document.getElementById("instructionsList");
-    instructionsList.style.display = (instructionsList.style.display === "none") ? "block" : "none";
-  }
-</script>
 
 
 By accessing the page of any streamer this will be added to the extension's list automatically, for each streamer the number of automatic redemptions made will also be saved.
