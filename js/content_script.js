@@ -8,12 +8,18 @@ const originalNameSelector1 = 'h1.CoreText-sc-1txzju1-0.ScTitleText-sc-d9mj2s-0.
 const originalNameSelector2 = 'p.CoreText-sc-1txzju1-0.ScTitleText-sc-d9mj2s-0.sghpq.caLSIS.tw-title';
 
 function controllaElemento() {
+  let name = "";
   console.clear();
   const elemento = document.querySelector(claimButtonSelector);
   const currentUrl = window.location.href;
-  const urlParts = currentUrl.split('/');
-  let name = urlParts[urlParts.length - 1];
-  name = name.replace(/\?referrer=raid/g, '');
+  const urlPath = currentUrl.replace('https://www.twitch.tv/' || 'https://www.twitch.tv', '');
+  if (urlPath !== "") {
+    name = urlPath;
+    name = name.replace(/\?referrer=raid/g, '');
+    name = (
+      name.includes("search?") || name.includes("directory")
+    ) ? "" : name;
+  }
 
   let src;
 
