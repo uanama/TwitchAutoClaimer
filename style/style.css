@@ -85,11 +85,33 @@
 .toggleOnOff {
   width: 80px;
   height: 80px;
-  background: linear-gradient(45deg, #000000, #3b2761, #000000);
   color: #6441a5;
   text-align: center;
   cursor: pointer;
   border-radius: 50%;
+  background:linear-gradient(135deg, #000000, #3b2761, #000000);
+
+  /* Aggiunta delle animazioni per ottenere un effetto animato */
+  animation-duration: 0.07s;
+  animation-timing-function: ease-in-out;
+}
+
+@keyframes rotateGradient {
+  0% {
+    background: linear-gradient(135deg, #000000, #3b2761, #000000);
+  }
+  25% {
+    background: linear-gradient(calc(135deg + 45deg), #000000, #3b2761, #000000);
+  }
+  50% {
+    background: linear-gradient(calc(135deg + 90deg), #000000, #3b2761, #000000);
+  }
+  75% {
+    background: linear-gradient(calc(135deg + 135deg), #000000, #3b2761, #000000);
+  }
+  100% {
+    background: linear-gradient(calc(135deg + 180deg), #000000, #3b2761, #000000);
+  }
 }
 
 .user-table {

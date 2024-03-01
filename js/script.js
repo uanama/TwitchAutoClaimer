@@ -156,10 +156,20 @@ function toggleButtonClick() {
   chrome.storage.local.get('twitchAutoClaimerOnOffState', function(result) {
     const onOffState = result.twitchAutoClaimerOnOffState;
     const newOnOffState = onOffState !== undefined ? !onOffState : true;
+
     chrome.storage.local.set({ 'twitchAutoClaimerOnOffState': newOnOffState }, function() {
       console.log('Stato aggiornato:', newOnOffState);
       extensionState.style.backgroundColor = newOnOffState ? '#6be06b' : 'red';
       stateText.textContent = newOnOffState ? 'ON' : 'OFF';
+
+      // Aggiungi l'animazione al cambiamento del gradient
+      const toggleOnOff = document.getElementById('toggleOnOff');
+      toggleOnOff.style.animationName = 'rotateGradient';
+
+      // Rimuovi temporaneamente l'animazione dopo che è stata completata
+      toggleOnOff.addEventListener('animationend', function() {
+        toggleOnOff.style.animationName = '';
+      });
     });
   });
 }
