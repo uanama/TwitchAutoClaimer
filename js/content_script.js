@@ -81,7 +81,13 @@ function controllaElemento() {
 function setOnOffValue() {
   chrome.storage.local.get('twitchAutoClaimerOnOffState', function(result) {
     const onOffState = result.twitchAutoClaimerOnOffState;
-    buttonIsOn = onOffState !== undefined ? onOffState : true;
+    if (onOffState !== undefined) {
+      buttonIsOn = onOffState !== undefined ? onOffState : true;
+    } else {
+      chrome.storage.local.set({ 'twitchAutoClaimerOnOffState': true }, function() {
+        console.log('Stato aggiornato:', true);
+      });
+    }
   });
 }
 

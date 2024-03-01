@@ -80,6 +80,7 @@ async function checkAndUpdateCurrentUrl() {
   }
 }
 
+// Funzione per creare un'immagine con le impostazioni comuni
 function createImageElement(src) {
   const imageElement = document.createElement('img');
   imageElement.src = src;
@@ -87,6 +88,7 @@ function createImageElement(src) {
   return imageElement;
 }
 
+// Funzione per creare un link con le impostazioni comuni
 function createNameLink(name) {
   const nameLink = document.createElement('a');
   nameLink.addEventListener('click', () => chrome.tabs.create({ url: `https://www.twitch.tv/${name}` }));
@@ -166,8 +168,19 @@ function toggleButtonClick() {
 function getOnOffValue() {
   chrome.storage.local.get('twitchAutoClaimerOnOffState', function(result) {
     const onOffState = result.twitchAutoClaimerOnOffState;
-    extensionState.style.backgroundColor = onOffState ? '#6be06b' : 'red';
-    stateText.textContent = onOffState ? 'ON' : 'OFF';
+    if (onOffState !== undefined) {
+      buttonIsOn = onOffState;
+      extensionState.style.backgroundColor = onOffState ? '#6be06b' : 'red';
+      stateText.textContent = onOffState ? 'ON' : 'OFF';
+    } else {
+      chrome.storage.local.set({ 'twitchAutoClaimerOnOffState': true }, function() {
+        extensionState.style.backgroundColor = '#6be06b';
+        stateText.textContent = 'ON';
+        console.log('Stato aggiornato:', true);
+      });
+    }
+   
+    
   });
 }
 
