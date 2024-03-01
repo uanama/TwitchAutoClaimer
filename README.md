@@ -1,6 +1,6 @@
 <h1 align="center">TwitchAutoClaimer</h1>
 <h3 align="center">Google extension that automatically clicks the button to redeem channel points on every page opened. The extension also saves the number of clicks made on each channel.</h3>
-<img align="right" alt="coding" width="400" src="https://github.com/LorenzoA98/TwitchAutoCLaimer/blob/main/screenshot.png">
+<img align="center" alt="coding" width="400" src="https://github.com/LorenzoA98/TwitchAutoCLaimer/blob/main/screenshot.png">
 
 1. Open Chrome;
 2. At the top right, select More (three dots) -> Extension -> Manage extensions;
