@@ -7,11 +7,35 @@ body {
   padding-bottom: 0px;
 }
 
-.toggleOnOffContainer {
+.header {
   display: flex;
   justify-content: center;
   align-items: center;
   padding-bottom: 10px;
+}
+
+.on-off-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* background-color: #000000; */
+  width: 90%;
+}
+
+.extension-state {
+  top: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #6441a5;
+}
+
+.state {
+  background-color: #6be06b;
+  border-radius: 50%;
+  width: 10px;
+  height: 10px;
+  margin-right: 10px;
 }
 
 @keyframes gradientAnimation {
@@ -105,7 +129,6 @@ body {
 .user-image {
   width: 30px;
   height: 30px;
-  margin-right: 10px;
   border-radius: 50%;
   opacity: 0.98;
 }
@@ -125,7 +148,7 @@ body {
   font-size: 14px;
 }
 
-#byUanama {
+#footer {
   width: 100%;
   text-align: center;
   margin-top: 20px;

@@ -1,5 +1,7 @@
 // Utilizza il tipo di const/let per dichiarare le variabili
 const toggleButton = document.getElementById('toggleOnOff');
+const stateText = document.getElementById('state-text');
+const extensionState = document.getElementById('state');
 
 // Utilizza funzioni arrow per una sintassi più concisa
 toggleButton.addEventListener('click', toggleButtonClick);
@@ -118,15 +120,20 @@ function moveUser(index, direction) {
   });
 }
 
-// Funzione per gestire il click sul bottone di accensione/spegnimento
+// // Funzione per gestire il click sul bottone di accensione/spegnimento
 function toggleButtonClick() {
   chrome.storage.local.get('twitchAutoClaimerOnOffState', function(result) {
     const onOffState = result.twitchAutoClaimerOnOffState;
     const newOnOffState = onOffState !== undefined ? !onOffState : true;
 
+    
+
     chrome.storage.local.set({ 'twitchAutoClaimerOnOffState': newOnOffState }, function() {
       console.log('Stato aggiornato:', newOnOffState);
-      toggleButton.textContent = newOnOffState ? 'TURN OFF' : 'TURN ON';
+      // toggleButton.textContent = newOnOffState ? 'TURN OFF' : 'TURN ON';
+      
+      extensionState.style.backgroundColor = newOnOffState ? '#6be06b' : 'red';
+      stateText.textContent = newOnOffState ? 'ON' : 'OFF';
     });
   });
 }
@@ -135,7 +142,9 @@ function toggleButtonClick() {
 function getOnOffValue() {
   chrome.storage.local.get('twitchAutoClaimerOnOffState', function(result) {
     const onOffState = result.twitchAutoClaimerOnOffState;
-    toggleButton.textContent = onOffState ? 'TURN OFF' : 'TURN ON';
+    // toggleButton.textContent = onOffState ? 'TURN OFF' : 'TURN ON';
+    extensionState.style.backgroundColor = onOffState ? '#6be06b' : 'red';
+    stateText.textContent = onOffState ? 'ON' : 'OFF';
   });
 }
 

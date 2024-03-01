@@ -7,12 +7,20 @@
 		<link rel="stylesheet" href="style/style.css">
 	</head>
 	<body>
-		<div class="toggleOnOffContainer">
-			<button id="toggleOnOff" class="toggleOnOff">TURN OFF</button>
+		<div class="header">
+			<div class="on-off-container">
+				<button id="toggleOnOff" class="toggleOnOff">
+					<div id="extension-state" class="extension-state">
+						<div id="state" class="state">
+						</div>
+						<p id="state-text" class="state-text">ON</p>
+					</div>
+				</button>
+			</div>
 		</div>
 		<div id="containerTwitchAutoClicker" class="containerTwitchAutoClicker">
 		</div>
-		<div id="byUanama">
+		<div id="footer">
 			by uanama
 		</div>
 		<script src="js/script.js"></script>
