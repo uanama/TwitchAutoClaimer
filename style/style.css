@@ -1,16 +1,32 @@
 body {
-  background: linear-gradient(45deg, #112511, #170f25, #112511);
-  background-size: 600% 600%;
-  animation: gradientAnimation 10s ease infinite;
+  background: linear-gradient(45deg, #091309, #170f25, #091309);
+  background-size: 1000% 1000%;
+  animation: gradientAnimation 20s ease infinite;
+  backdrop-filter: blur(10px);
   width: 450px;
-  padding: 10px;
+  padding: 20px;
+  margin: 0px;
   padding-bottom: 0px;
 }
 
+@keyframes gradientAnimation {
+  0% {
+    background-position: 0% 0%;
+  }
+  50% {
+    background-position: 100% 100%;
+  }
+  100% {
+    background-position: 0% 0%;
+  }
+}
+
 .header {
+  z-index: 2;
   display: flex;
   justify-content: center;
   align-items: center;
+  /* padding-top: 10px; */
   padding-bottom: 10px;
 }
 
@@ -38,25 +54,16 @@ body {
   margin-right: 10px;
 }
 
-@keyframes gradientAnimation {
-  0% {
-    background-position: 0% 0%;
-  }
-  50% {
-    background-position: 100% 100%;
-  }
-  100% {
-    background-position: 0% 0%;
-  }
-}
+
 
 .text {
   color: white;
 }
 
 .containerTwitchAutoClicker {
+  /* z-index: 10; */
   background-color: transparent;
-  max-height: 200px;
+  max-height: 175px;
   overflow: auto;
 }
 
@@ -83,7 +90,6 @@ body {
   text-align: center;
   cursor: pointer;
   border-radius: 50%;
-  animation: gradientAnimation 10s ease infinite;
 }
 
 .user-table {
@@ -92,21 +98,21 @@ body {
 }
 
 .user-table th {
-  /* padding: 8px; */
   white-space: nowrap; /* Evita il riavvolgimento del testo */
 }
 
 .user-table td {
-  padding: 4px;
+  
+  /* padding: 4px;
   padding-left: 15px;
-  padding-right: 15px;
+  padding-right: 15px; */
   white-space: nowrap; /* Evita il riavvolgimento del testo */
 }
 
 .reorder-button, .remove-button {
   display: inline-block;
   vertical-align: middle;
-  margin-left: 5px;
+  margin-right: 10px;
   border: none;
   border-radius: 15px;
   width: 20px;
@@ -139,6 +145,7 @@ body {
   cursor: pointer;
   text-align: left;
   font-size: 14px;
+  padding-left: 10px;
 }
 
 .click-count {
@@ -151,7 +158,8 @@ body {
 #footer {
   width: 100%;
   text-align: center;
-  margin-top: 20px;
+  margin-top: 15px;
+  margin-bottom: 15px;
   font-size: 14px;
   background: linear-gradient(45deg, #6441a5CC, #6441a5);
   -webkit-background-clip: text;
