@@ -1,7 +1,7 @@
 <h1 align="center">TwitchAutoClaimer</h1>
 <h3 align="center">Google extension that automatically clicks the button to redeem channel points on every page opened. The extension also saves the number of clicks made on each channel.</h3>
 <div align="center">
-  <img alt="screenshot.png" width="600" src="https://github.com/LorenzoA98/TwitchAutoCLaimer/blob/main/screenshot.png">
+  <img alt="screenshot.png" width="500" src="https://github.com/LorenzoA98/TwitchAutoCLaimer/blob/main/screenshot.png">
 </div>
 
 
