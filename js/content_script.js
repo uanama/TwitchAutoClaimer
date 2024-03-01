@@ -26,8 +26,7 @@ function controllaElemento() {
   if (name !== "") {
     chrome.storage.local.get('twitchAutoClaimerObject', function(result) {
       const twitchAutoClaimerObject = result?.twitchAutoClaimerObject ?? { users: [] };
-      const originalName = document.querySelector(originalNameSelector1);
-      const originalName2 = document.querySelector(originalNameSelector2);
+      
 
       // Verifica se l'utente è già presente nella lista
       const userIndex = twitchAutoClaimerObject.users.findIndex(user => user.name === name);
@@ -35,6 +34,8 @@ function controllaElemento() {
 
       if (userIndex === -1) {
         // Ottenendo il link dell'immagine del profilo
+        const originalName = document.querySelector(originalNameSelector1);
+        const originalName2 = document.querySelector(originalNameSelector2);
         let finalOriginalName;
         if (originalName) {
           finalOriginalName = originalName.textContent;
