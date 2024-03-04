@@ -16,6 +16,7 @@ function controllaElemento() {
   if (urlPath !== "") {
     name = urlPath;
     name = name.replace(/\?referrer=raid/g, '');
+    name = name.replace('/moderator', '');
     name = (
       name.includes("search?") || name.includes("directory") || name.includes("moderator")
     ) ? "" : name;
