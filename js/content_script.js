@@ -18,7 +18,13 @@ function controllaElemento() {
     name = name.replace(/\?referrer=raid/g, '');
     name = name.replace('moderator/', '');
     name = (
-      name.includes("search?") || name.includes("directory")
+      name.includes("search?") || 
+      name.includes("directory") || 
+      name.includes("videos") ||
+      name.includes("clip") ||
+      name.includes("clips?") ||
+      name.includes("about") ||
+      name.includes("schedule")
     ) ? "" : name;
   }
 
