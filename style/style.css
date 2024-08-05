@@ -39,7 +39,7 @@
 }
 
 .extension-state {
-  top: 0;
+  /* top: 0; */
   display: flex;
   justify-content: center;
   align-items: center;
@@ -54,7 +54,10 @@
   margin-right: 10px;
 }
 
-
+.state-text {
+  padding: 0px;
+  margin: 0px;
+}
 
 .text {
   color: white;
@@ -84,11 +87,11 @@
 
 .toggleOnOff {
   width: 80px;
-  height: 80px;
+  height: 20px;
   color: #6441a5;
   text-align: center;
   cursor: pointer;
-  border-radius: 50%;
+  border-radius: 5px;
   background:linear-gradient(135deg, #000000, #3b2761, #000000);
 
   /* Aggiunta delle animazioni per ottenere un effetto animato */
@@ -120,15 +123,11 @@
 }
 
 .user-table th {
-  white-space: nowrap; /* Evita il riavvolgimento del testo */
+  white-space: nowrap;
 }
 
 .user-table td {
-  
-  /* padding: 4px;
-  padding-left: 15px;
-  padding-right: 15px; */
-  white-space: nowrap; /* Evita il riavvolgimento del testo */
+  white-space: nowrap;
 }
 
 .reorder-button, .remove-button {
@@ -175,6 +174,20 @@
   text-align: center;
   width: 100%;
   font-size: 14px;
+}
+
+.clearList {
+  width: 80px;
+  height: 20px;
+  color: #ffffff;
+  text-align: center;
+  cursor: pointer;
+  border-radius: 5px;
+  background: linear-gradient(135deg, #a50000, #d9534f, #a50000);
+  margin-left: 10px;
+  font-size: 14px;
+  border: none;
+  transition: background 0.3s ease;
 }
 
 #footer {

@@ -1,30 +1,29 @@
 <!DOCTYPE html>
 <html lang="en">
-	<head>
-		<meta charset="UTF-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-		<title>Twitch Auto Clicker</title>
-		<link rel="stylesheet" href="style/style.css">
-	</head>
-	<body class="extension-twitch-auto-claimer-body">
-		<div>
-			<div class="header">
-				<div class="on-off-container">
-					<button id="toggleOnOff" class="toggleOnOff">
-						<div id="extension-state" class="extension-state">
-							<div id="state" class="state">
-							</div>
-							<p id="state-text" class="state-text">ON</p>
-						</div>
-					</button>
-				</div>
-			</div>
-			<div id="containerTwitchAutoClicker" class="containerTwitchAutoClicker">
-			</div>
-			<div id="footer">
-				by uanama
-			</div>
-		</div>
-		<script src="js/script.js"></script>
-	</body>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Twitch Auto Clicker</title>
+    <link rel="stylesheet" href="style/style.css">
+</head>
+<body class="extension-twitch-auto-claimer-body">
+    <div>
+        <div class="header">
+            <div class="on-off-container">
+                <button id="toggleOnOff" class="toggleOnOff">
+                    <div id="extension-state" class="extension-state">
+                        <div id="state" class="state"></div>
+                        <p id="state-text" class="state-text">ON</p>
+                    </div>
+                </button>
+                <button id="clearList" class="clearList">Clear List</button> <!-- Aggiungi questo pulsante -->
+            </div>
+        </div>
+        <div id="containerTwitchAutoClicker" class="containerTwitchAutoClicker"></div>
+        <div id="footer">
+            by uanama
+        </div>
+    </div>
+    <script src="js/script.js"></script>
+</body>
 </html>

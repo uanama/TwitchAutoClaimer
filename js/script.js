@@ -212,6 +212,25 @@ function createButton(text, className, clickHandler) {
   return button;
 }
 
+function clearUserList() {
+  chrome.storage.local.get('twitchAutoClaimerObject', function(result) {
+      const twitchAutoClaimerObject = result.twitchAutoClaimerObject;
+      if (twitchAutoClaimerObject && twitchAutoClaimerObject.users.length > 0) {
+          // Pulisce la lista degli utenti
+          twitchAutoClaimerObject.users = [];
+          chrome.storage.local.set({ 'twitchAutoClaimerObject': twitchAutoClaimerObject }, function() {
+              console.log('Lista utenti cancellata.');
+              checkAndUpdateCurrentUrl(); // Aggiorna la visualizzazione della tabella
+          });
+      } else {
+          console.log('Nessun oggetto trovato nella cache per la chiave "twitchAutoClaimerObject"');
+      }
+  });
+}
+
+const clearListButton = document.getElementById('clearList');
+clearListButton.addEventListener('click', clearUserList);
+
 // Esegui la funzione ogni 5 secondi
 checkAndUpdateCurrentUrl();
 getOnOffValue();
