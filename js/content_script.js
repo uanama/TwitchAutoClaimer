@@ -3,7 +3,10 @@ const toggleButton = document.getElementById('toggleOnOff');
 let buttonIsOn = false;
 
 // Definisci le costanti per i query selector
-const claimButtonSelector = '.ScCoreButton-sc-ocjdkq-0.ScCoreButtonSuccess-sc-ocjdkq-5.ljgEdo.fEpwrH';
+// const claimButtonSelector = '.ScCoreButton-sc-ocjdkq-0.ScCoreButtonSuccess-sc-ocjdkq-5.ljgEdo.fEpwrH';
+const claimButtonSelector = '.ScCoreButton-sc-ocjdkq-0.bCfhNy';
+//ScCoreButtonLabel-sc-s7h2b7-0.gPDjGr
+//ScCoreButton-sc-ocjdkq-0 bCfhNy
 const originalNameSelector1 = 'h1.CoreText-sc-1txzju1-0.ScTitleText-sc-d9mj2s-0.AAWwv.bzDGwQ.InjectLayout-sc-1i43xsx-0.dhkijX.tw-title';
 const originalNameSelector2 = 'p.CoreText-sc-1txzju1-0.ScTitleText-sc-d9mj2s-0.sghpq.caLSIS.tw-title';
 
